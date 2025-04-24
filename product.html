@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iCREAM - Modern E-Commerce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        h1, h2, h3 {
+            color: #ff6b81;
+        }
+
+        /* Header */
+        .header {
+            background-color: #ffffff;
+            color: #333;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .header-links a {
+            margin: 0 10px;
+            font-size: 0.9rem;
+            color: #555;
+            transition: color 0.3s ease;
+        }
+
+        .header-links a:hover {
+            color: #ff6b81;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            font-size: 1.2rem;
+            color: #555;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff6b81;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b81;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a.active, .nav-links a:hover {
+            color: #ff6b81;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 107, 129, 0.8), rgba(255, 107, 129, 0.8)), url('hero-bg.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 150px 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Product Showcase */
+        .product-showcase {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+
+        .product-showcase h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-item {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            font-size: 1rem;
+            color: #777;
+        }
+
+        .product-info .btn {
+            display: block;
+            text-align: center;
+            background-color: #ff6b81;
+            color: white;
+            padding: 10px;
+            margin: 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-info .btn:hover {
+            background-color: #e65a6f;
+        }
+
+        /* Image Slider */
+        .slider {
+            position: relative;
+            overflow: hidden;
+            margin: 50px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .slider-nav button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .slider-nav button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            padding: 50px 0;
+            background: white;
+        }
+
+        .contact-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-form form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            background-color: #ff6b81;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #e65a6f;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer-social {
+            margin: 20px 0;
+        }
+
+        .footer-social a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #ff6b81;
+        }
+
+        .footer-copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .footer-info {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="header-top">
+            <div class="header-links">
+                <a href="#">FAQS</a>
+                <span>|</span>
+                <a href="#">Help</a>
+                <span>|</span>
+                <a href="#">Support</a>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="index.html" class="logo">iCREAM</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="product.html">Product</a>
+                <a href="service.html">Service</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Welcome to iCREAM</h1>
+        <p>Discover the finest ice cream made with love and tradition.</p>
+        <img src="images_6.jpg" alt="Portfolio 6">
+    </div>
+</section>
+
+<!-- Product Showcase -->
+<section class="product-showcase">
+    <div class="container">
+        <h2>For Our Clients</h2>
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="vanila.jpg" alt="Product 1">
+                <div class="product-info">
+                    <h3>Vanilla Dream</h3>
+                    <p>Classic vanilla with a modern twist.</p>
+                    <a href="cart.html" class="btn">Add to Cart</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="choco_2.webp" alt="Product 2">
+                <div class="product-info">
+                    <h3>Chocolate Bliss</h3>
+                    <p>Rich, creamy, and indulgent.</p>
+                    <a href="cart.html" class="btn">Add to Cart</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="straw.avif" alt="Product 3">
+                <div class="product-info">
+                    <h3>Strawberry Delight</h3>
+                    <p>Fresh strawberries in every bite.</p>
+                    <a href="cart.html" class="btn">Add to Cart</a>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="mint.jpeg" alt="Product 4">
+                <div class="product-info">
+                    <h3>Mint Magic</h3>
+                    <p>Cool and refreshing mint flavor.</p>
+                    <a href="cart.html" class="btn">Add to Cart</a>
+                   
+                        
+                      
+  
+  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image Slider -->
+<div class="slider">
+    <div class="slides">
+        <div class="slide">
+            <img src="black.webp" alt="Slide 1">
+            
+        </div>
+        <div class="slide">
+            <img src="white.png" alt="Slide 2">
+        </div>
+        <div class="slide">
+            <img src="straw_2.avif" alt="Slide 3">
+        </div>
+    </div>
+    <div class="slider-nav">
+        <button id="prev"><i class="fas fa-chevron-left"></i></button>
+        <button id="next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</div>
+
+<!-- Contact Form -->
+<section class="contact-form">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form action="product.php" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" name="message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <div class="footer-info">
+            <div class="footer-contact">
+                <h5>Get In Touch</h5>
+                <p>123 Street, Ratnapura, Sri Lanka</p>
+                <p>+94 76 2166288</p>
+            </div>
+            <div class="footer-hours">
+                <h5>Opening Hours</h5>
+                <p>Mon - Sat: 8AM - 5PM</p>
+                <p>Sunday: Closed</p>
+            </div>
+        <div class="footer-copyright">
+            &copy; 2023 iCREAM. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript for Slider -->
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelector('.slides');
+    const totalSlides = document.querySelectorAll('.slide').length;
+
+    function showSlide(index) {
+        if (index < 0) currentSlide = totalSlides - 1;
+        else if (index >= totalSlides) currentSlide = 0;
+        else currentSlide = index;
+
+        slides.style.transform = `translateX(${-currentSlide * 100}%)`;
+    }
+
+    document.getElementById('prev').addEventListener('click', () => showSlide(currentSlide - 1));
+    document.getElementById('next').addEventListener('click', () => showSlide(currentSlide + 1));
+
+    setInterval(() => showSlide(currentSlide + 1), 5000); // Auto-slide every 5 seconds
+</script>
+</body>
+</html>
